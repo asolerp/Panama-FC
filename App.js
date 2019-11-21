@@ -1,16 +1,26 @@
-import React from 'react';
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import React from 'react'
+import { StyleSheet, KeyboardAvoidingView } from 'react-native'
 
-import HelloMessage from './src/components/HelloMessage';
-import LoginForm from './src/components/LoginForm';
+import HelloMessage from './src/components/HelloMessage'
+import SignUpFormBase from './src/components/SignUp'
 
-export default function App() {
+import Firebase, { FirebaseContext } from './src/components/Firebase'
+
+function Application() {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <HelloMessage />
-      <LoginForm />
+      <SignUpFormBase />
     </KeyboardAvoidingView>
-  );
+  )
+}
+
+export default function App() {
+  return (
+    <FirebaseContext.Provider value={new Firebase()}>
+      <Application />
+    </FirebaseContext.Provider>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -21,4 +31,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})

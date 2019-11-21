@@ -11,8 +11,12 @@
       "error",
       {
         "trailingComma": "es5",
+        "semi": false,
         "singleQuote": true,
-        "printWidth": 100
+        "printWidth": 100,
+        "camelcase": "off",
+        "comma-dangle": 0,
+        "no-console": "off"
       }
     ]
   },

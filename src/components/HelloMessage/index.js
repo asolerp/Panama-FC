@@ -1,8 +1,8 @@
-import React from 'react';
-import Title from './styles';
+import React from 'react'
+import Title from './styles'
 
 function HelloMessage() {
-  return <Title>Panama FC!</Title>;
+  return <Title>Panama FC!</Title>
 }
 
-export default HelloMessage;
+export default HelloMessage

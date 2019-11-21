@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Title = styled.Text`
-  font-size: 90px;
+  font-size: 60px;
   font-weight: 500;
   color: palevioletred;
   text-align: center;
-`;
+`
 
-export default Title;
+export default Title

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const InputsWrapper = styled.View`
+const FormWrapper = styled.View`
   width: 100%;
   padding: 0px 20px 0px 20px;
-`;
+`
 
 const Input = styled.TextInput`
   width: 100%;
@@ -14,8 +14,8 @@ const Input = styled.TextInput`
   border-color: gray;
   border-width: 1;
   margin-bottom: 10px;
-`;
+`
 
-const Button = styled.Button``;
+const Button = styled.Button``
 
-export { Input, InputsWrapper, Button };
+export { Input, FormWrapper, Button }
