@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, KeyboardAvoidingView } from 'react-native'
 
 import HelloMessage from './src/components/HelloMessage'
-import SignUpFormBase from './src/components/SignUp'
+import SignUpPage from './src/components/SignUp'
 
 import Firebase, { FirebaseContext } from './src/components/Firebase'
 
@@ -10,7 +10,7 @@ function Application() {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <HelloMessage />
-      <SignUpFormBase />
+      <SignUpPage />
     </KeyboardAvoidingView>
   )
 }

@@ -1,5 +1,7 @@
+import {useContext} from 'react'
 import app from 'firebase/app'
 import 'firebase/auth'
+import LoadingContext from '../../LoadingContext'
 
 const config = {
   apiKey: 'AIzaSyCNk6YM5DZXEjhg5XwtwUEbHDdksSy3CgE',
@@ -15,8 +17,15 @@ class Firebase {
   }
 
   // *** Auth API ***
-  doCreateUserWithEmailAndPassword = (email, password) =>
-  this.auth.createUserWithEmailAndPassword(email, password)
+  doCreateUserWithEmailAndPassword = async (email, password) =>{
+    try {
+      const value = useContext(LoadingContext);
+      console.log(value)
+      // await this.auth.createUserWithEmailAndPassword(email, password)
+    } catch(err) {
+      console.log(err)
+    }
+  }
 
   doSignInWithEmailAndPassword = (email, password) =>
   this.auth.signInWithEmailAndPassword(email, password)
