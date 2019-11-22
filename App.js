@@ -4,7 +4,7 @@ import { StyleSheet, KeyboardAvoidingView } from 'react-native'
 import HelloMessage from './src/components/HelloMessage'
 import SignUpPage from './src/components/SignUp'
 
-import Firebase, { FirebaseContext } from './src/components/Firebase'
+import FirebaseProvider from './FirebaseContext'
 
 function Application() {
   return (
@@ -17,9 +17,9 @@ function Application() {
 
 export default function App() {
   return (
-    <FirebaseContext.Provider value={new Firebase()}>
+    <FirebaseProvider>
       <Application />
-    </FirebaseContext.Provider>
+    </FirebaseProvider>
   )
 }
 

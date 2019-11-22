@@ -1,37 +1,56 @@
-import React from 'react'
-import { Alert, Text } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { Text, ActivityIndicator } from 'react-native'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import firebase from 'firebase'
 import userInput from '../../hooks/userInput'
 import { Input, FormWrapper, Button } from './styles'
 
-import { withFirebase } from '../Firebase'
+import { FirebaseContext } from '../../../FirebaseContext'
 
-const SignUpFormBase = props => {
-  console.log(props)
+const SignUpForm = () => {
+  const firebase = useContext(FirebaseContext)
+  const auth = firebase.auth()
+  const [fberror, setFberror] = useState()
+  const [user, initialising, error] = useAuthState(auth)
   const email = userInput('')
   const password = userInput('')
 
-  const {
-    firebase: { doCreateUserWithEmailAndPassword },
-  } = props
+  const handleLogout = () => {
+    auth.signOut()
+  }
 
-  const onSubmit = () => doCreateUserWithEmailAndPassword(email.value, password.value)
+  const handleSignUp = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(email.value, password.value)
+    } catch (err) {
+      setFberror(err.message)
+    }
+  }
+
+  const Error = () => {
+    return <Text>{fberror}</Text>
+  }
 
   return (
     <FormWrapper>
+      {initialising && <ActivityIndicator size="large" color="#0000ff" />}
       <Text>{email.value}</Text>
       <Input {...email} />
       <Input {...password} />
       <Button
-        title="Registrarse"
+        title="Login"
         accessibilityLabel="Learn more about this purple button"
-        onPress={() => onSubmit()}
+        onPress={() => handleSignUp()}
       />
+      <Button
+        title="Logout"
+        accessibilityLabel="Learn more about this purple button"
+        onPress={() => handleLogout()}
+      />
+      {fberror && <Error />}
+      {user && <Text>Current user: {user.email}</Text>}
     </FormWrapper>
   )
 }
 
-const SignUpForm = withFirebase(SignUpFormBase)
-
-export default function SignUpPage() {
-  return <SignUpForm />
-}
+export default SignUpForm
